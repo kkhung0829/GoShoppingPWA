@@ -1,0 +1,7 @@
+{
+  "name": "GoShoppingPWA",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

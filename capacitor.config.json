@@ -1,0 +1,8 @@
+{
+  "appId": "org.kkhung.goshoppingpwa",
+  "appName": "GoShoppingPWA",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Total: {{calcTotalPrice() | currency}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+  <div *ngFor="let item of items">
+    <app-shop-item
+      [item]="item"
+      (incUnit)="shopItemIncUnitCB(item)"
+      (decUnit)="shopItemDecUnitCB(item)"
+    ></app-shop-item>
+  </div>
+<ion-content>
+
+</ion-content>

@@ -1,0 +1,1 @@
+export { ShopItemStoreService } from "./shop-item-store.service";

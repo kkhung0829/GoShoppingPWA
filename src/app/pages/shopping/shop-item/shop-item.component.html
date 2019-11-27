@@ -1,0 +1,25 @@
+<ion-card>
+  <ion-item>
+    <ion-thumbnail slot="start" class="myThumbnail">
+      <ion-img [src]="item.imgURI"></ion-img>
+      <p>{{item.name}}</p>
+    </ion-thumbnail>
+    <ion-label>
+      <h2>@ {{item.unitPrice | currency}}</h2>
+      <h2>X {{item.numUnit}}</h2>    
+    </ion-label>
+    <ion-badge slot="end">{{item.unitPrice * item.numUnit | currency}}</ion-badge>
+  </ion-item>
+  <ion-row>
+    <ion-col class="ion-text-left">
+      <ion-button (click)="onIncUnit()">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col class="ion-text-right">
+        <ion-button (click)="onDecUnit()">
+          <ion-icon slot="icon-only" name="remove-circle"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+</ion-card>
