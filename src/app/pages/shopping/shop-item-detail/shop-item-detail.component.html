@@ -26,6 +26,10 @@
         [(ngModel)]="myItem.numUnit"
       ></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-button (click)="takePicture()">Take Photo</ion-button>
+      <ion-img [src]="myItem.imgURI"></ion-img>
+    </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer>

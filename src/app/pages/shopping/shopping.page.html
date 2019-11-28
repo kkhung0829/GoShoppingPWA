@@ -1,6 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Total: {{calcTotalPrice() | currency}}</ion-title>
+    <ion-buttons
+      slot="end"
+    >
+      <ion-button
+        color="danger"
+        (click)="removeAll()"
+      >
+        <ion-icon
+          slot="icon-only"
+          name="trash"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -10,6 +23,7 @@
         [item]="item"
         (incUnit)="shopItemIncUnitCB(item)"
         (decUnit)="shopItemDecUnitCB(item)"
+        (showDetail)="shopItemShowDetailCB(item)"
       ></app-shop-item>
     </div>      
   </ion-list>

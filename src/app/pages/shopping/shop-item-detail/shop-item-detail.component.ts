@@ -4,6 +4,11 @@ import {
   Input,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import {
+  Plugins,
+  CameraResultType,
+} from '@capacitor/core';
+const { Camera } = Plugins;
 
 import {
   ShopItem,
@@ -41,5 +46,14 @@ export class ShopItemDetailComponent implements OnInit {
 
   cancel() {
     this.modalController.dismiss();
+  }
+
+  async takePicture() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.DataUrl
+    });
+    this.myItem.imgURI = image.dataUrl;
   }
 }

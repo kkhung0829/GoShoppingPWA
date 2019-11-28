@@ -19,6 +19,7 @@ export class ShopItemComponent implements OnInit {
 
   @Output() incUnit = new EventEmitter<void>();
   @Output() decUnit = new EventEmitter<void>();
+  @Output() showDetail = new EventEmitter<void>();
 
   constructor() { }
 

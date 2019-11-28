@@ -82,4 +82,26 @@ export class ShoppingPage implements OnInit {
       modal.present();
     });
   }
+
+  removeAll(): void {
+    this.items = [];
+    this.shopItemStore.save(this.items);
+  }
+
+  shopItemShowDetailCB(item: ShopItem): void {
+    this.modalController.create({
+      component: ShopItemDetailComponent,
+      componentProps: {
+        item: item,
+      },
+    })
+    .then((modal) => {
+      modal.onDidDismiss()
+      .then((data) => {
+        if (data.data) {
+        }
+      });
+      modal.present();
+    });
+  }
 }
