@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 import {
   ShopItem,
   ShopItemStoreService,
 } from '../../lib';
+
+import { ShopItemDetailComponent } from './shop-item-detail/shop-item-detail.component';
 
 @Component({
   selector: 'app-shopping',
@@ -26,7 +29,10 @@ export class ShoppingPage implements OnInit {
     }
   ];
 
-  constructor(private shopItemStore: ShopItemStoreService) { }
+  constructor(
+    private modalController: ModalController,
+    private shopItemStore: ShopItemStoreService,
+  ) { }
 
   ngOnInit() {
     this.shopItemStore.reload()
@@ -49,11 +55,31 @@ export class ShoppingPage implements OnInit {
 
   shopItemIncUnitCB(item: ShopItem): void {
     item.numUnit++;
+    this.shopItemStore.save(this.items);
   }
 
   shopItemDecUnitCB(item: ShopItem): void {
     if (item.numUnit > 0) {
       item.numUnit--;
+      this.shopItemStore.save(this.items);
     }
+  }
+
+  onAddItem(): void {
+    this.modalController.create({
+      component: ShopItemDetailComponent,
+    })
+    .then((modal) => {
+      modal.onDidDismiss()
+      .then((data) => {
+        if (data.data) {
+          let temp = this.items;
+
+          this.items = [data.data as ShopItem].concat(temp);
+          this.shopItemStore.save(this.items);
+        }
+      });
+      modal.present();
+    });
   }
 }

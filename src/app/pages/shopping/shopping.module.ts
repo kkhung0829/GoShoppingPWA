@@ -12,6 +12,7 @@ import {
 
 import { ShoppingPage } from './shopping.page';
 import { ShopItemComponent } from './shop-item/shop-item.component';
+import { ShopItemDetailComponent } from './shop-item-detail/shop-item-detail.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,10 @@ import { ShopItemComponent } from './shop-item/shop-item.component';
   declarations: [
     ShoppingPage,
     ShopItemComponent,
-  ]
+    ShopItemDetailComponent,
+  ],
+  entryComponents: [
+    ShopItemDetailComponent,
+  ],
 })
 export class ShoppingPageModule {}
