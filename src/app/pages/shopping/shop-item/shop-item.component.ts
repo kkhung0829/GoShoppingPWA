@@ -6,7 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { ShopItem } from '../../../lib';
+import { IShopItem } from '../../../lib';
 
 @Component({
   selector: 'app-shop-item',
@@ -15,7 +15,7 @@ import { ShopItem } from '../../../lib';
 })
 export class ShopItemComponent implements OnInit {
 
-  @Input() item: ShopItem;
+  @Input() item: IShopItem;
 
   @Output() incUnit = new EventEmitter<void>();
   @Output() decUnit = new EventEmitter<void>();

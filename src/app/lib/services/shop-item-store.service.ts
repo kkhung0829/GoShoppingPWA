@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Store } from "@ngrx/store";
 import { Storage } from '@ionic/storage';
+import { Observable } from "rxjs";
+import { map } from 'rxjs/operators';
+import { List } from 'immutable';
 
 import {
-  ShopItem,
+  IShopItem,
 } from '../models';
+import * as ShopingActions from '../../actions/shopping.action';
+import { AppState, getShoppingItems } from '../../reducers';
 
 const STORAGE_KEY = 'shopItem';
 
@@ -11,21 +17,32 @@ const STORAGE_KEY = 'shopItem';
   providedIn: 'root'
 })
 export class ShopItemStoreService {
+  public items: Observable<IShopItem[]>;
 
-  constructor(private storage: Storage) { }
-
-  reload(): Promise<ShopItem[]> {
-    return this.storage.get(STORAGE_KEY)
-    .then((val) => {
-      if (val) {
-        return JSON.parse(val) as ShopItem[];
-      } else {
-        return [] as ShopItem[];
-      }
-    });
+  constructor(
+    private storage: Storage,
+    private store: Store<AppState>
+  ) {
+    this.items = this.store.select(getShoppingItems).pipe(
+      map((value) => value.toJS()),
+    );
   }
 
-  save(items: ShopItem[]): Promise<any> {
-    return this.storage.set(STORAGE_KEY, JSON.stringify(items));
+  addItem(item: IShopItem): void {
+    item._id = Math.random().toString(36);
+
+    this.store.dispatch(ShopingActions.addItem({ item: item }));
+  }
+
+  delItem(id: string): void {
+    this.store.dispatch(ShopingActions.delItem({ id: id }));
+  }
+
+  updateItem(item: IShopItem): void {
+    this.store.dispatch(ShopingActions.updateItem({ item: item }));
+  }
+
+  delAllItem(): void {
+    this.store.dispatch(ShopingActions.delAllItem());
   }
 }

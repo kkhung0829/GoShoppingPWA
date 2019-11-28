@@ -11,7 +11,7 @@ import {
 const { Camera } = Plugins;
 
 import {
-  ShopItem,
+  IShopItem,
 } from '../../../lib';
 
 @Component({
@@ -21,10 +21,10 @@ import {
 })
 export class ShopItemDetailComponent implements OnInit {
 
-  @Input() item: ShopItem;
+  @Input() item: IShopItem;
 
   title: string = '';
-  myItem: ShopItem = {
+  myItem: IShopItem = {
     unitPrice: 0.0,
     numUnit: 1,
   };
@@ -36,7 +36,7 @@ export class ShopItemDetailComponent implements OnInit {
   ngOnInit() {
     this.title = (this.item ? 'Edit' : 'Add') + ' Item';
     if (this.item) {
-      this.myItem = this.item;
+      this.myItem = {...this.item};
     }
   }
 

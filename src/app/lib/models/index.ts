@@ -1,1 +1,1 @@
-export { ShopItem } from './shop-item';
+export { IShopItem } from './shop-item.interface';

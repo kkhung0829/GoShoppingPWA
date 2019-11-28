@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import {
-  ShopItem,
+  IShopItem,
   ShopItemStoreService,
 } from '../../lib';
 
@@ -14,20 +14,7 @@ import { ShopItemDetailComponent } from './shop-item-detail/shop-item-detail.com
   styleUrls: ['./shopping.page.scss'],
 })
 export class ShoppingPage implements OnInit {
-  items: ShopItem[] = [
-    {
-      name: 'Test1',
-      unitPrice: 1.3,
-      numUnit: 2,
-      imgURI: null,
-    },
-    {
-      name: 'Test2',
-      unitPrice: 1.0,
-      numUnit: 2,
-      imgURI: null,
-    }
-  ];
+  items: IShopItem[];
 
   constructor(
     private modalController: ModalController,
@@ -35,15 +22,14 @@ export class ShoppingPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shopItemStore.reload()
-    .then((items: ShopItem[]) => {
+    this.shopItemStore.items.subscribe((items) => {
       this.items = items;
-    });  
+    })
   }
 
   calcTotalPrice(): number {
     let totalPrice : number = 0;
-    let item : ShopItem;
+    let item : IShopItem;
     let index : number;
 
     for (index = 0; index < this.items.length; index++) {
@@ -53,15 +39,16 @@ export class ShoppingPage implements OnInit {
     return totalPrice;
   }
 
-  shopItemIncUnitCB(item: ShopItem): void {
+  shopItemIncUnitCB(item: IShopItem): void {
     item.numUnit++;
-    this.shopItemStore.save(this.items);
+
+    this.shopItemStore.updateItem(item);
   }
 
-  shopItemDecUnitCB(item: ShopItem): void {
+  shopItemDecUnitCB(item: IShopItem): void {
     if (item.numUnit > 0) {
       item.numUnit--;
-      this.shopItemStore.save(this.items);
+      this.shopItemStore.updateItem(item);
     }
   }
 
@@ -73,10 +60,7 @@ export class ShoppingPage implements OnInit {
       modal.onDidDismiss()
       .then((data) => {
         if (data.data) {
-          let temp = this.items;
-
-          this.items = [data.data as ShopItem].concat(temp);
-          this.shopItemStore.save(this.items);
+          this.shopItemStore.addItem(data.data);
         }
       });
       modal.present();
@@ -84,11 +68,11 @@ export class ShoppingPage implements OnInit {
   }
 
   removeAll(): void {
-    this.items = [];
-    this.shopItemStore.save(this.items);
+    this.shopItemStore.delAllItem();
   }
 
-  shopItemShowDetailCB(item: ShopItem): void {
+  shopItemShowDetailCB(item: IShopItem): void {
+console.log(`shopItemShowDetailCB: ${JSON.stringify(item)}`);
     this.modalController.create({
       component: ShopItemDetailComponent,
       componentProps: {
@@ -99,6 +83,7 @@ export class ShoppingPage implements OnInit {
       modal.onDidDismiss()
       .then((data) => {
         if (data.data) {
+          this.shopItemStore.updateItem(data.data);
         }
       });
       modal.present();
