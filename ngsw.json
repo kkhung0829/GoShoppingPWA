@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575012944211,
+  "timestamp": 1575017917593,
   "index": "https://kkhung0829.github.io/GoShoppingPWA/index.html",
   "assetGroups": [
     {
@@ -245,7 +245,8 @@
         "https://kkhung0829.github.io/GoShoppingPWA/assets/icons/icon-512x512.png",
         "https://kkhung0829.github.io/GoShoppingPWA/assets/icons/icon-72x72.png",
         "https://kkhung0829.github.io/GoShoppingPWA/assets/icons/icon-96x96.png",
-        "https://kkhung0829.github.io/GoShoppingPWA/assets/shapes.svg"
+        "https://kkhung0829.github.io/GoShoppingPWA/assets/shapes.svg",
+        "https://kkhung0829.github.io/GoShoppingPWA/assets/splash.png"
       ],
       "patterns": []
     }
@@ -472,9 +473,10 @@
     "https://kkhung0829.github.io/GoShoppingPWA/assets/icons/icon-72x72.png": "d1a9678519005847308fdf1910f6841fe36f75de",
     "https://kkhung0829.github.io/GoShoppingPWA/assets/icons/icon-96x96.png": "8076c915bb451e06722497882127c3c1959d317c",
     "https://kkhung0829.github.io/GoShoppingPWA/assets/shapes.svg": "5413e95adabcb2cb639970051f55e0ddb64ace53",
+    "https://kkhung0829.github.io/GoShoppingPWA/assets/splash.png": "d61100680b5b01c500c54628ef0671a3eb49e982",
     "https://kkhung0829.github.io/GoShoppingPWA/common-es2015.52057d12451ddf6d128e.js": "7f4a2fa5fa4ef1b677c3cb79ce3c69454bfbae00",
     "https://kkhung0829.github.io/GoShoppingPWA/common-es5.84a9aa5ffca5f4900929.js": "860d2afdcb9669f2d921f2ffbbda8f8b0b3b7bca",
-    "https://kkhung0829.github.io/GoShoppingPWA/index.html": "8ee971f7d8537d7a2b333ca49d3680c62caa4349",
+    "https://kkhung0829.github.io/GoShoppingPWA/index.html": "e5ce4fa690e4121a8b2eb89172caa4d27a36fd89",
     "https://kkhung0829.github.io/GoShoppingPWA/main-es2015.b201fdeccb974bbffe17.js": "2bb3b7cc5e400303666f8f982aedc1d7c0de273d",
     "https://kkhung0829.github.io/GoShoppingPWA/main-es5.79c00b6d1ef8a15ea073.js": "b1c1d2e67bfdd3174dc337e3f31677e0092c24f6",
     "https://kkhung0829.github.io/GoShoppingPWA/polyfills-es2015.fef1080417e6cf321cb1.js": "7fc26158a2fd7f9d37ce975a9a2e47aa9370af1c",
