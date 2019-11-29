@@ -26,20 +26,20 @@
         [(ngModel)]="myItem.numUnit"
       ></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-button (click)="takePicture()">Take Photo</ion-button>
-      <ion-img [src]="myItem.imgURI"></ion-img>
+    <ion-button expand="block" (click)="takePicture()">Take Photo</ion-button>
+    <ion-item *ngIf="myItem.imgURI">
+        <ion-img [src]="myItem.imgURI"></ion-img>
     </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button (click)="save()">
         <ion-icon slot="icon-only" name="save"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="start">
+    <ion-buttons slot="end">
       <ion-button (click)="cancel()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>

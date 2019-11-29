@@ -6,6 +6,7 @@ import {
 import { ModalController } from '@ionic/angular';
 import {
   Plugins,
+  CameraSource,
   CameraResultType,
 } from '@capacitor/core';
 const { Camera } = Plugins;
@@ -49,11 +50,19 @@ export class ShopItemDetailComponent implements OnInit {
   }
 
   async takePicture() {
+    const LOG_PREFIX = '[ShopItemDetailComponent:takePicture] ';
+
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
+      source: CameraSource.Prompt,
       resultType: CameraResultType.DataUrl
+    }).catch((err) => {
+      console.log(LOG_PREFIX + `error: ${JSON.stringify(err)}`);
     });
-    this.myItem.imgURI = image.dataUrl;
+
+    if (image) {
+      this.myItem.imgURI = image.dataUrl;
+    }
   }
 }
