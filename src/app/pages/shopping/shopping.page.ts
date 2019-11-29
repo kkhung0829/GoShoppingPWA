@@ -32,23 +32,28 @@ export class ShoppingPage implements OnInit {
     let item : IShopItem;
     let index : number;
 
-    for (index = 0; index < this.items.length; index++) {
-      item = this.items[index];
-      totalPrice += item.unitPrice * item.numUnit;
+    if (this.items) {
+      for (index = 0; index < this.items.length; index++) {
+        item = this.items[index];
+        totalPrice += item.unitPrice * item.numUnit;
+      }  
     }
     return totalPrice;
   }
 
   shopItemIncUnitCB(item: IShopItem): void {
-    item.numUnit++;
+    let myItem = {...item};
 
-    this.shopItemStore.updateItem(item);
+    myItem.numUnit++;
+    this.shopItemStore.updateItem(myItem);
   }
 
   shopItemDecUnitCB(item: IShopItem): void {
     if (item.numUnit > 0) {
-      item.numUnit--;
-      this.shopItemStore.updateItem(item);
+      let myItem = {...item};
+
+      myItem.numUnit--;
+      this.shopItemStore.updateItem(myItem);
     }
   }
 
@@ -72,7 +77,6 @@ export class ShoppingPage implements OnInit {
   }
 
   shopItemShowDetailCB(item: IShopItem): void {
-console.log(`shopItemShowDetailCB: ${JSON.stringify(item)}`);
     this.modalController.create({
       component: ShopItemDetailComponent,
       componentProps: {

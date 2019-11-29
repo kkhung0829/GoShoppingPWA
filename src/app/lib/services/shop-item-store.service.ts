@@ -3,15 +3,12 @@ import { Store } from "@ngrx/store";
 import { Storage } from '@ionic/storage';
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
-import { List } from 'immutable';
 
 import {
   IShopItem,
 } from '../models';
 import * as ShopingActions from '../../actions/shopping.action';
 import { AppState, getShoppingItems } from '../../reducers';
-
-const STORAGE_KEY = 'shopItem';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +20,7 @@ export class ShopItemStoreService {
     private storage: Storage,
     private store: Store<AppState>
   ) {
-    this.items = this.store.select(getShoppingItems).pipe(
-      map((value) => value.toJS()),
-    );
+    this.items = this.store.select(getShoppingItems);
   }
 
   addItem(item: IShopItem): void {

@@ -1,27 +1,29 @@
 import { Action, createReducer, on } from '@ngrx/store';
+
 import * as ShoppingActions from '../actions/shopping.action';
-import { List } from 'immutable';
 
 import {
     IShopItem,
 } from '../lib';
 
 export interface ShoppingState {
-    itemList: List<IShopItem>,
+    itemList: IShopItem[],
 }
 
 const initialState: ShoppingState = {
-    itemList: List<IShopItem>(),
+    itemList: [],
 };
 
-export const getItems = (state: ShoppingState) => state.itemList;
+export const getItems = (state: ShoppingState) => {
+    return state.itemList;
+}
 
 const shoppingReducer = createReducer(
     initialState,
     on( ShoppingActions.addItem,
         (state, { item }) => ({
             ...state,
-            itemList: state.itemList.unshift(item),
+            itemList: [item, ...state.itemList],
         })),
     on( ShoppingActions.delItem,
         (state, { id }) => ({
@@ -42,7 +44,7 @@ const shoppingReducer = createReducer(
     on( ShoppingActions.delAllItem,
         (state) => ({
             ...state,
-            itemList: List<IShopItem>(),
+            itemList: [],
         })),
 );
 
