@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "Go Shopping PWA",
+  "short_name": "GoShoppingPWA",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
