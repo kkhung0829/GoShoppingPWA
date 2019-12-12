@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Take Photo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <webcam *ngIf="!webcamImage"
+    [allowCameraSwitch]="true"
+    [trigger]="triggerObservable"
+    (initError)="handleInitError($event)"
+    (imageCapture)="handleImage($event)"
+  ></webcam>
+  <img *ngIf="webcamImage"
+    [src]="webcamImage.imageAsDataUrl"
+  />
+</ion-content>
+<ion-footer>
+  <ion-toolbar *ngIf="!webcamImage">
+    <ion-button
+      expand="block"
+      (click)="triggerSnapshot()"
+    >
+      <ion-icon slot="icon-only" name="camera"></ion-icon>
+    </ion-button>  
+  </ion-toolbar>
+  <ion-toolbar *ngIf="webcamImage">
+    <ion-buttons slot="start">
+      <ion-button (click)="webcamImage = null">
+        Retake
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">
+        Use Photo
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

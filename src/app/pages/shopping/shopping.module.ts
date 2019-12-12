@@ -8,6 +8,7 @@ import { ShoppingPageRoutingModule } from './shopping-routing.module';
 
 import {
   LibModule,
+  TakePhotoComponent,
 } from '../../lib';
 
 import { ShoppingPage } from './shopping.page';
@@ -28,6 +29,7 @@ import { ShopItemDetailComponent } from './shop-item-detail/shop-item-detail.com
     ShopItemDetailComponent,
   ],
   entryComponents: [
+    TakePhotoComponent,
     ShopItemDetailComponent,
   ],
 })

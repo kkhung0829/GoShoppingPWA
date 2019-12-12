@@ -17,6 +17,7 @@ const { Camera } = Plugins;
 import {
   IShopItem,
   ShopItemStoreService,
+  TakePhotoComponent,
 } from '../../../lib';
 
 @Component({
@@ -70,20 +71,36 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
     this.modalController.dismiss();
   }
 
-  async takePicture() {
-    const LOG_PREFIX = '[ShopItemDetailComponent:takePicture] ';
+  // async takePicture() {
+  //   const LOG_PREFIX = '[ShopItemDetailComponent:takePicture] ';
 
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      source: CameraSource.Prompt,
-      resultType: CameraResultType.DataUrl
-    }).catch((err) => {
-      console.log(LOG_PREFIX + `error: ${JSON.stringify(err)}`);
+  //   const image = await Camera.getPhoto({
+  //     quality: 90,
+  //     allowEditing: true,
+  //     source: CameraSource.Prompt,
+  //     resultType: CameraResultType.DataUrl
+  //   }).catch((err) => {
+  //     console.log(LOG_PREFIX + `error: ${JSON.stringify(err)}`);
+  //   });
+
+  //   if (image) {
+  //     this.myItem.imgURI = image.dataUrl;
+  //   }
+  // }
+
+  takePicture() {
+    this.modalController.create({
+      component: TakePhotoComponent,
+      backdropDismiss: true,
+    })
+    .then((modal) => {
+      modal.onDidDismiss()
+      .then((data) => {
+        if (data.data) {
+          this.myItem.imgURI = data.data;
+        }
+      });
+      modal.present();
     });
-
-    if (image) {
-      this.myItem.imgURI = image.dataUrl;
-    }
   }
 }
