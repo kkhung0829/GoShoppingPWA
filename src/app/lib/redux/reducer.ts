@@ -39,6 +39,7 @@ const metaReducers: MetaReducer<AppState>[] = !environment.production ?
 export {
   AppState,
   reducers,
+  localStorageSyncReducer,
   metaReducers,
   selectShoppingState,
 };
