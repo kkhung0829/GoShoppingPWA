@@ -1,9 +1,12 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   Input,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {
   Plugins,
   CameraSource,
@@ -13,6 +16,7 @@ const { Camera } = Plugins;
 
 import {
   IShopItem,
+  ShopItemStoreService,
 } from '../../../lib';
 
 @Component({
@@ -20,9 +24,11 @@ import {
   templateUrl: './shop-item-detail.component.html',
   styleUrls: ['./shop-item-detail.component.scss'],
 })
-export class ShopItemDetailComponent implements OnInit {
+export class ShopItemDetailComponent implements OnInit, OnDestroy {
 
-  @Input() item: IShopItem;
+  @Input() id: string;
+
+  private unsubscribe$ = new Subject<void>();
 
   title: string = '';
   myItem: IShopItem = {
@@ -32,17 +38,32 @@ export class ShopItemDetailComponent implements OnInit {
 
   constructor(
     private modalController: ModalController,
+    private shopItemStore: ShopItemStoreService,
   ) { }
 
   ngOnInit() {
-    this.title = (this.item ? 'Edit' : 'Add') + ' Item';
-    if (this.item) {
-      this.myItem = {...this.item};
+    this.title = (this.id ? 'Edit' : 'Add') + ' Item';
+    if (this.id) {
+      this.shopItemStore.selectItemById$(this.id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((item) => {
+        this.myItem = {...item};
+      });
     }
   }
 
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
   save() {
-    this.modalController.dismiss(this.myItem);
+    if (this.id) {
+      this.shopItemStore.updateItem(this.myItem);
+    } else {
+      this.shopItemStore.addItem(this.myItem);
+    }
+    this.modalController.dismiss();
   }
 
   cancel() {

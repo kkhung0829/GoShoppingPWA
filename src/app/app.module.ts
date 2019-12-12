@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './lib/redux/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({

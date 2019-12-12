@@ -1,35 +1,68 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   Input,
-  Output,
-  EventEmitter,
 } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import { IShopItem } from '../../../lib';
+import {
+  IShopItem,
+  ShopItemStoreService
+} from '../../../lib';
+
+import { ShopItemDetailComponent } from '../shop-item-detail/shop-item-detail.component';
 
 @Component({
   selector: 'app-shop-item',
   templateUrl: './shop-item.component.html',
   styleUrls: ['./shop-item.component.scss'],
 })
-export class ShopItemComponent implements OnInit {
+export class ShopItemComponent implements OnInit, OnDestroy {
 
-  @Input() item: IShopItem;
+  @Input() id: string;
 
-  @Output() incUnit = new EventEmitter<void>();
-  @Output() decUnit = new EventEmitter<void>();
-  @Output() showDetail = new EventEmitter<void>();
+  private unsubscribe$ = new Subject<void>();
 
-  constructor() { }
+  item: IShopItem;
 
-  ngOnInit() {}
+  constructor(
+    private modalController: ModalController,
+    private shopItemStore: ShopItemStoreService,
+  ) { }
+
+  ngOnInit() {
+    this.shopItemStore.selectItemById$(this.id)
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe((item) => {
+      this.item = item;
+    });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 
   onIncUnit() {
-    this.incUnit.emit();
+    this.shopItemStore.incItemUnit(this.id);
   }
 
   onDecUnit() {
-    this.decUnit.emit();
+    this.shopItemStore.decItemUnit(this.id);
+  }
+
+  showDetail() {
+    this.modalController.create({
+      component: ShopItemDetailComponent,
+      componentProps: {
+        id: this.id,
+      },
+    })
+    .then((modal) => {
+      modal.present();
+    });
   }
 }

@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import {
   IShopItem,
@@ -13,8 +19,11 @@ import { ShopItemDetailComponent } from './shop-item-detail/shop-item-detail.com
   templateUrl: './shopping.page.html',
   styleUrls: ['./shopping.page.scss'],
 })
-export class ShoppingPage implements OnInit {
+export class ShoppingPage implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
+
   items: IShopItem[];
+  totalPrice: number;
 
   constructor(
     private modalController: ModalController,
@@ -22,39 +31,19 @@ export class ShoppingPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shopItemStore.items.subscribe((items) => {
+    this.shopItemStore.items$
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe((items) => {
       this.items = items;
-    })
+    });
+    this.shopItemStore.totalPrice$.subscribe((totalPrice) => {
+      this.totalPrice = totalPrice;
+    });
   }
 
-  calcTotalPrice(): number {
-    let totalPrice : number = 0;
-    let item : IShopItem;
-    let index : number;
-
-    if (this.items) {
-      for (index = 0; index < this.items.length; index++) {
-        item = this.items[index];
-        totalPrice += item.unitPrice * item.numUnit;
-      }  
-    }
-    return totalPrice;
-  }
-
-  shopItemIncUnitCB(item: IShopItem): void {
-    let myItem = {...item};
-
-    myItem.numUnit++;
-    this.shopItemStore.updateItem(myItem);
-  }
-
-  shopItemDecUnitCB(item: IShopItem): void {
-    if (item.numUnit > 0) {
-      let myItem = {...item};
-
-      myItem.numUnit--;
-      this.shopItemStore.updateItem(myItem);
-    }
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   onAddItem(): void {
@@ -62,18 +51,12 @@ export class ShoppingPage implements OnInit {
       component: ShopItemDetailComponent,
     })
     .then((modal) => {
-      modal.onDidDismiss()
-      .then((data) => {
-        if (data.data) {
-          this.shopItemStore.addItem(data.data);
-        }
-      });
       modal.present();
     });
   }
 
   removeAll(): void {
-    this.shopItemStore.delAllItem();
+    this.shopItemStore.clearItems();
   }
 
   shopItemShowDetailCB(item: IShopItem): void {

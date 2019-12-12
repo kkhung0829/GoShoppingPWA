@@ -1,5 +1,5 @@
 <ion-card>
-  <ion-item button (click)="showDetail.emit()">
+  <ion-item button (click)="showDetail()">
     <ion-thumbnail slot="start" [ngClass]="(item.imgURI) ? 'myThumbnailWithPhoto' : 'myThumbnailWithoutPhoto'">
       <ion-img [src]="item.imgURI"></ion-img>
       <p>{{item.name}}</p>
