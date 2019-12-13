@@ -71,6 +71,13 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
     this.modalController.dismiss();
   }
 
+  remove() {
+    if (this.id) {
+      this.shopItemStore.delItem(this.id);
+      this.modalController.dismiss();
+    }
+  }
+
   // async takePicture() {
   //   const LOG_PREFIX = '[ShopItemDetailComponent:takePicture] ';
 

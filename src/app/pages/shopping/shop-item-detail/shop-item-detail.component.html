@@ -1,6 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{title}}</ion-title>
+    <ion-buttons *ngIf="id"
+      slot="end"
+    >
+      <ion-button
+        color="danger"
+        (click)="remove()"
+      >
+        <ion-icon
+          slot="icon-only"
+          name="trash"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>

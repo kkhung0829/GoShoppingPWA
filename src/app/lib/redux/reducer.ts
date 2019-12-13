@@ -29,8 +29,20 @@ function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any
   })(reducer);
 }
 
+function debugReduxLog(reducer: ActionReducer<any>): ActionReducer<any> {
+  const LOG_PREFIX = '[REDUX] ';
+
+  return function(state, action) {
+    console.log(LOG_PREFIX + `state`, state);
+    console.log(LOG_PREFIX + `action`, action);
+
+    return reducer(state, action);
+  }
+}
+
 const metaReducers: MetaReducer<AppState>[] = !environment.production ?
 [
+  debugReduxLog,
   localStorageSyncReducer
 ] : [
   localStorageSyncReducer
@@ -39,6 +51,7 @@ const metaReducers: MetaReducer<AppState>[] = !environment.production ?
 export {
   AppState,
   reducers,
+  debugReduxLog as debugLog,
   localStorageSyncReducer,
   metaReducers,
   selectShoppingState,

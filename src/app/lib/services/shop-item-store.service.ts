@@ -30,8 +30,6 @@ export class ShopItemStoreService {
   }
 
   addItem(item: IShopItem): void {
-    item._id = Math.random().toString(36);
-
     this.store.dispatch(actions.addItem({item}));
   }
 

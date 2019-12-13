@@ -3,6 +3,7 @@ import {
     createReducer,
     on
 } from '@ngrx/store';
+import { immute } from 'ngrx-immutable';
 
 import {
     addItem,
@@ -22,62 +23,69 @@ const initialState: ShoppingState = {
     itemList: [],
 };
 
+
 const shoppingReducer = createReducer(
     initialState,
     on( addItem,
-        (state, { item }) => ({
-            ...state,
-            itemList: [item, ...state.itemList],
-        })),
+        (state, { item }) => {
+            let newItem = {...item, _id: Math.random().toString(36)};
+
+            return immute(
+                state,
+                [ 'itemList' ],
+                (itemList) => ([newItem, ...itemList])
+            );
+        }
+    ),
     on( delItem,
-        (state, { id }) => ({
-            ...state,
-            itemList: state.itemList.filter((value) => (value._id !== id)),
-        })),
+        (state, { id }) => immute(
+            state,
+            [
+                'itemList',
+                (item) => (item._id === id),
+            ],
+            undefined
+        )
+    ),
     on( incItemUnit,
-        (state, { id }) => ({
-            ...state,
-            itemList: state.itemList.map((item) => {
-                if (item._id === id) {
-                    return {
-                        ...item,
-                        numUnit: item.numUnit + 1,
-                    };
-                } else {
-                    return item;
-                }
-            }),
-        })),
+        (state, { id }) => immute(
+            state,
+            [
+                'itemList',
+                (item) => (item._id === id),
+                'numUnit',
+            ],
+            (numUnit) => (numUnit + 1)
+        )
+    ),
     on( decItemUnit,
-        (state, { id }) => ({
-            ...state,
-            itemList: state.itemList.map((item) => {
-                if ((item._id === id) && (item.numUnit > 0)) {
-                    return {
-                        ...item,
-                        numUnit: item.numUnit - 1,
-                    };
-                } else {
-                    return item;
-                }
-            }),
-        })),
+        (state, { id }) => immute(
+            state,
+            [
+                'itemList',
+                (item) => (item._id === id),
+                'numUnit',
+            ],
+            (numUnit) => (numUnit > 0 ? numUnit - 1 : numUnit)
+        )
+    ),
     on( updateItem,
-        (state, { item }) => ({
-            ...state,
-            itemList: state.itemList.map((value) => {
-                if (value._id === item._id) {
-                    return {...value, ...item};
-                } else {
-                    return value;
-                }
-            }),
-        })),
+        (state, { item }) => immute(
+            state,
+            [
+                'itemList',
+                (orgItem) => (orgItem._id === item._id),
+            ],
+            (orgItem) => ({...orgItem, ...item})
+        )
+    ),
     on( clearItems,
-        (state) => ({
-            ...state,
-            itemList: [],
-        })),
+        (state) => immute(
+            state,
+            [ 'itemList' ],
+            []
+        )
+    ),
 );
 
 function reducer(state: ShoppingState | undefined, action: Action) {

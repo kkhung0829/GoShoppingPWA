@@ -33,6 +33,7 @@
     "@ngrx/store-devtools": "^8.5.2",
     "core-js": "^2.5.4",
     "key-mirror": "^1.0.1",
+    "ngrx-immutable": "^1.0.6",
     "ngrx-store-localstorage": "^8.0.0",
     "ngx-webcam": "^0.2.6",
     "rxjs": "~6.5.1",
