@@ -22,9 +22,25 @@
       <ion-label position="fixed">Num Unit</ion-label>
       <ion-input type="number" [(ngModel)]="myItem.numUnit"></ion-input>
     </ion-item>
-    <ion-button expand="block" (click)="takePicture()">
-      <ion-icon slot="icon-only" name="camera"></ion-icon>
-    </ion-button>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="photoFilePicker">
+              <label for="photoFileInput">
+                  <ion-button expand="block">
+                      <ion-icon name="photos"></ion-icon>
+                  </ion-button>
+              </label>
+              <input #photoFile id="photoFileInput" type="file" accept='image/*' (change)="pickPhoto(photoFile.files)" />  
+          </div>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="takePicture()">
+            <ion-icon slot="icon-only" name="camera"></ion-icon>
+          </ion-button>          
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-item *ngIf="myItem.imgURI">
       <ion-img [src]="myItem.imgURI"></ion-img>
     </ion-item>

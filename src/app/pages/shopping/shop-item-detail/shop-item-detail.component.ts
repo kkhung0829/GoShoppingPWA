@@ -7,12 +7,6 @@ import {
 import { ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import {
-  Plugins,
-  CameraSource,
-  CameraResultType,
-} from '@capacitor/core';
-const { Camera } = Plugins;
 
 import {
   IShopItem,
@@ -78,23 +72,6 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  // async takePicture() {
-  //   const LOG_PREFIX = '[ShopItemDetailComponent:takePicture] ';
-
-  //   const image = await Camera.getPhoto({
-  //     quality: 90,
-  //     allowEditing: true,
-  //     source: CameraSource.Prompt,
-  //     resultType: CameraResultType.DataUrl
-  //   }).catch((err) => {
-  //     console.log(LOG_PREFIX + `error: ${JSON.stringify(err)}`);
-  //   });
-
-  //   if (image) {
-  //     this.myItem.imgURI = image.dataUrl;
-  //   }
-  // }
-
   takePicture() {
     this.modalController.create({
       component: TakePhotoComponent,
@@ -109,5 +86,18 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
       });
       modal.present();
     });
+  }
+
+  pickPhoto(files) {
+    if (files.length === 0) return;
+
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) return;
+
+    let reader = new FileReader();
+    reader.onload = (_event) => {
+      this.myItem.imgURI = reader.result as string;
+    }
+    reader.readAsDataURL(files[0]);
   }
 }
