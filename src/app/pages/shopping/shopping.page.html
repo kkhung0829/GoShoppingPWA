@@ -1,37 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Total: {{totalPrice | currency:"":"symbol":"1.1-1"}}</ion-title>
-    <ion-buttons
-      slot="end"
-    >
-      <ion-button
-        color="danger"
-        (click)="removeAll()"
-      >
-        <ion-icon
-          slot="icon-only"
-          name="trash"
-        ></ion-icon>
+    <ion-title text-center>Total: {{totalPrice | currency:"":"symbol":"1.1-1"}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="removeAll()">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list inset>
-    <div *ngFor="let item of items">
-      <app-shop-item
-        [id]="item._id"
-      ></app-shop-item>
-    </div>      
-  </ion-list>
-  <ion-fab
-    horizontal="end"
-    vertical="bottom"
-    slot="fixed"
-  >
-    <ion-fab-button
-      (click)="onAddItem()"
-    >
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let item of items" size-sm="6" size-md="4" size-xl="3">
+        <app-shop-item [id]="item._id"></app-shop-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button (click)="onAddItem()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

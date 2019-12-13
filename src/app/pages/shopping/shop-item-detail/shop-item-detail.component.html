@@ -1,17 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{title}}</ion-title>
-    <ion-buttons *ngIf="id"
-      slot="end"
-    >
-      <ion-button
-        color="danger"
-        (click)="remove()"
-      >
-        <ion-icon
-          slot="icon-only"
-          name="trash"
-        ></ion-icon>
+    <ion-buttons *ngIf="id" slot="end">
+      <ion-button color="danger" (click)="remove()">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -20,30 +12,21 @@
   <ion-list inset>
     <ion-item>
       <ion-label position="fixed">Name</ion-label>
-      <ion-input
-        type="text"
-        [(ngModel)]="myItem.name"
-      ></ion-input>
+      <ion-input type="text" [(ngModel)]="myItem.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="fixed">Unit Price</ion-label>
-      <ion-input
-        type="number"
-        [(ngModel)]="myItem.unitPrice"
-      ></ion-input>
+      <ion-input type="number" [(ngModel)]="myItem.unitPrice"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="fixed">Num Unit</ion-label>
-      <ion-input
-        type="number"
-        [(ngModel)]="myItem.numUnit"
-      ></ion-input>
+      <ion-input type="number" [(ngModel)]="myItem.numUnit"></ion-input>
     </ion-item>
     <ion-button expand="block" (click)="takePicture()">
       <ion-icon slot="icon-only" name="camera"></ion-icon>
     </ion-button>
     <ion-item *ngIf="myItem.imgURI">
-        <ion-img [src]="myItem.imgURI"></ion-img>
+      <ion-img [src]="myItem.imgURI"></ion-img>
     </ion-item>
   </ion-list>
 </ion-content>
