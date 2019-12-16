@@ -16,7 +16,6 @@ import {
   ShopItemStoreService,
   TakePhotoComponent,
 } from '../../../lib';
-import { exists } from 'fs';
 
 @Component({
   selector: 'app-shop-item-detail',
