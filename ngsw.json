@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1576224749981,
+  "timestamp": 1576463689644,
   "index": "https://kkhung0829.github.io/GoShoppingPWA/index.html",
   "assetGroups": [
     {
@@ -30,8 +30,8 @@
         "https://kkhung0829.github.io/GoShoppingPWA/109-es2015.dd784e51b246e3b3d8ae.js",
         "https://kkhung0829.github.io/GoShoppingPWA/12-es5.66af8a86ab609f252d3d.js",
         "https://kkhung0829.github.io/GoShoppingPWA/13-es2015.9504e414b3963b5a3f98.js",
-        "https://kkhung0829.github.io/GoShoppingPWA/13-es5.524d0162fd8358bd26ee.js",
-        "https://kkhung0829.github.io/GoShoppingPWA/14-es2015.0fd7f763d41c799001e9.js",
+        "https://kkhung0829.github.io/GoShoppingPWA/13-es5.4d8a4c13a12b7261bdbd.js",
+        "https://kkhung0829.github.io/GoShoppingPWA/14-es2015.52b7c9f1c51cfd5bc986.js",
         "https://kkhung0829.github.io/GoShoppingPWA/14-es5.70f02aa6e6b966831e2a.js",
         "https://kkhung0829.github.io/GoShoppingPWA/15-es2015.d42f4042f6d48ac986d3.js",
         "https://kkhung0829.github.io/GoShoppingPWA/15-es5.3935b8ccad2c696dc7b1.js",
@@ -225,8 +225,8 @@
         "https://kkhung0829.github.io/GoShoppingPWA/main-es5.e83efd3a10d107d22813.js",
         "https://kkhung0829.github.io/GoShoppingPWA/polyfills-es2015.fef1080417e6cf321cb1.js",
         "https://kkhung0829.github.io/GoShoppingPWA/polyfills-es5.d16f045d514fb8aaf051.js",
-        "https://kkhung0829.github.io/GoShoppingPWA/runtime-es2015.3121ee74dff0dae07d0f.js",
-        "https://kkhung0829.github.io/GoShoppingPWA/runtime-es5.56ea7cde06ccc7e01e64.js",
+        "https://kkhung0829.github.io/GoShoppingPWA/runtime-es2015.42d94be7001714efd172.js",
+        "https://kkhung0829.github.io/GoShoppingPWA/runtime-es5.c5fe8d6f14709ff4de6d.js",
         "https://kkhung0829.github.io/GoShoppingPWA/styles.5211b10d863687fb85f8.css"
       ],
       "patterns": []
@@ -275,8 +275,8 @@
     "https://kkhung0829.github.io/GoShoppingPWA/109-es2015.dd784e51b246e3b3d8ae.js": "d751c5ab3373e715feeda3ad41b5b36e96df1630",
     "https://kkhung0829.github.io/GoShoppingPWA/12-es5.66af8a86ab609f252d3d.js": "91b8ec0b419f31aa77968506964560c9f6272b53",
     "https://kkhung0829.github.io/GoShoppingPWA/13-es2015.9504e414b3963b5a3f98.js": "ca675839d036f3080e8e37408e3c9b06c369e605",
-    "https://kkhung0829.github.io/GoShoppingPWA/13-es5.524d0162fd8358bd26ee.js": "adf4b8603e9a203229cb5b448beb9871bc24573d",
-    "https://kkhung0829.github.io/GoShoppingPWA/14-es2015.0fd7f763d41c799001e9.js": "cefa43bf4b365feff289c5cbce226ef803423594",
+    "https://kkhung0829.github.io/GoShoppingPWA/13-es5.4d8a4c13a12b7261bdbd.js": "accdaf6221dc1e561961fb25e3130e33c456b077",
+    "https://kkhung0829.github.io/GoShoppingPWA/14-es2015.52b7c9f1c51cfd5bc986.js": "667e4155e48862600a7b361c412db27c3e0504e2",
     "https://kkhung0829.github.io/GoShoppingPWA/14-es5.70f02aa6e6b966831e2a.js": "2738203fdd73232a6e0950593f38abc2f5584065",
     "https://kkhung0829.github.io/GoShoppingPWA/15-es2015.d42f4042f6d48ac986d3.js": "89dd6d9f7712722edfb1701f6bf0c78f47b6d1ad",
     "https://kkhung0829.github.io/GoShoppingPWA/15-es5.3935b8ccad2c696dc7b1.js": "ebcc1c7d6e3c041687e1533659dcb1786c556f87",
@@ -476,13 +476,13 @@
     "https://kkhung0829.github.io/GoShoppingPWA/assets/splash.png": "d61100680b5b01c500c54628ef0671a3eb49e982",
     "https://kkhung0829.github.io/GoShoppingPWA/common-es2015.52057d12451ddf6d128e.js": "7f4a2fa5fa4ef1b677c3cb79ce3c69454bfbae00",
     "https://kkhung0829.github.io/GoShoppingPWA/common-es5.84a9aa5ffca5f4900929.js": "860d2afdcb9669f2d921f2ffbbda8f8b0b3b7bca",
-    "https://kkhung0829.github.io/GoShoppingPWA/index.html": "cf06dbd782b86487cee9ffb905a3c5fd356623a4",
+    "https://kkhung0829.github.io/GoShoppingPWA/index.html": "0f7fef62863bba089056dc6f21e64f51fb5c1ea8",
     "https://kkhung0829.github.io/GoShoppingPWA/main-es2015.5371edce2f1c0113c2d3.js": "bf940c6275015eba76fc0a76f997f7e3194ecfcf",
     "https://kkhung0829.github.io/GoShoppingPWA/main-es5.e83efd3a10d107d22813.js": "ec7ead0702bc8ef0c05158da9e909af50e4fabba",
     "https://kkhung0829.github.io/GoShoppingPWA/polyfills-es2015.fef1080417e6cf321cb1.js": "7fc26158a2fd7f9d37ce975a9a2e47aa9370af1c",
     "https://kkhung0829.github.io/GoShoppingPWA/polyfills-es5.d16f045d514fb8aaf051.js": "0e735e556832b3e3b03d6baaefd1e7df969e2089",
-    "https://kkhung0829.github.io/GoShoppingPWA/runtime-es2015.3121ee74dff0dae07d0f.js": "b0b00ce2c47c5186ca50466a708ca856bfcc54f1",
-    "https://kkhung0829.github.io/GoShoppingPWA/runtime-es5.56ea7cde06ccc7e01e64.js": "d44c8d93f9518db966115700f70b742d2fc1dcb0",
+    "https://kkhung0829.github.io/GoShoppingPWA/runtime-es2015.42d94be7001714efd172.js": "a48ca027612dd30f15d5801fb859d615fc69c9d6",
+    "https://kkhung0829.github.io/GoShoppingPWA/runtime-es5.c5fe8d6f14709ff4de6d.js": "85734f8f4bd1183f43698d2663a40ce58df7f31e",
     "https://kkhung0829.github.io/GoShoppingPWA/styles.5211b10d863687fb85f8.css": "6734cfec823250cc7dffbd0a69546db4c13d64db"
   },
   "navigationUrls": [
