@@ -29,6 +29,7 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
   isMobile: boolean;
+  isIOS: boolean;
   title: string = '';
   myItem: IShopItem = {
     unitPrice: 0.0,
@@ -45,6 +46,7 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isMobile = this.platform.is('mobile');
+    this.isIOS = this.platform.is('ios');
     this.title = (this.id ? 'Edit' : 'Add') + ' Item';
     if (this.id) {
       this.shopItemStore.selectItemById$(this.id)
@@ -118,9 +120,11 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
       console.log(`EXIF Orientation: ${orientation}`);
 
       if (orientation) {
-        self.zone.run(() => {
-          self.myItem.exifOrientation = orientation;
-        });
+        if (!self.isIOS) {
+          self.zone.run(() => {
+            self.myItem.exifOrientation = orientation;
+          });  
+        }
       }
     });
   }
