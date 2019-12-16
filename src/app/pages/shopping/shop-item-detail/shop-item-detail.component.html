@@ -42,7 +42,11 @@
       </ion-row>
     </ion-grid>
     <ion-item *ngIf="myItem.imgURI">
-      <ion-img [src]="myItem.imgURI"></ion-img>
+      <ion-img [src]="myItem.imgURI"
+        [class.exifOrientation3]="(myItem.exifOrientation == 3)"
+        [class.exifOrientation6]="(myItem.exifOrientation == 6)"
+        [class.exifOrientation8]="(myItem.exifOrientation == 8)"
+      ></ion-img>
     </ion-item>
   </ion-list>
 </ion-content>

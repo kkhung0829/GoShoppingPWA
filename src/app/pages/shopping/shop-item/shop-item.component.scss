@@ -25,3 +25,15 @@
         color: black;
     }
 }
+
+.exifOrientation3 {
+    transform:rotate(180deg);
+}
+
+.exifOrientation6 {
+    transform:rotate(90deg);
+}
+
+.exifOrientation8 {
+    transform:rotate(270deg);
+}

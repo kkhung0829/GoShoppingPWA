@@ -32,6 +32,7 @@
     "@ngrx/store": "^8.5.2",
     "@ngrx/store-devtools": "^8.5.2",
     "core-js": "^2.5.4",
+    "exif-js": "^2.3.0",
     "key-mirror": "^1.0.1",
     "ngrx-immutable": "^1.0.6",
     "ngrx-store-localstorage": "^8.0.0",

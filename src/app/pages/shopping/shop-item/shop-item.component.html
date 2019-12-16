@@ -1,7 +1,11 @@
 <ion-card>
   <ion-item button (click)="showDetail()">
     <ion-thumbnail slot="start" [ngClass]="(item.imgURI) ? 'myThumbnailWithPhoto' : 'myThumbnailWithoutPhoto'">
-      <ion-img [src]="item.imgURI"></ion-img>
+      <ion-img [src]="item.imgURI"
+        [class.exifOrientation3]="(item.exifOrientation == 3)"
+        [class.exifOrientation6]="(item.exifOrientation == 6)"
+        [class.exifOrientation8]="(item.exifOrientation == 8)"
+      ></ion-img>
       <p>{{item.name}}</p>
     </ion-thumbnail>
     <ion-label>

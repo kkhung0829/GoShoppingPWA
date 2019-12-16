@@ -3,16 +3,20 @@ import {
   OnInit,
   OnDestroy,
   Input,
+  NgZone,
 } from '@angular/core';
 import { Platform, ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
+import * as EXIF from 'exif-js';
 
 import {
   IShopItem,
   ShopItemStoreService,
   TakePhotoComponent,
 } from '../../../lib';
+import { exists } from 'fs';
 
 @Component({
   selector: 'app-shop-item-detail',
@@ -30,11 +34,13 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
   myItem: IShopItem = {
     unitPrice: 0.0,
     numUnit: 1,
+    exifOrientation: 1,
   };
 
   constructor(
     private platform: Platform,
     private modalController: ModalController,
+    private zone: NgZone,
     private shopItemStore: ShopItemStoreService,
   ) { }
 
@@ -92,6 +98,8 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
   }
 
   pickPhoto(files) {
+    let self = this;
+
     if (files.length === 0) return;
 
     let mimeType = files[0].type;
@@ -102,5 +110,19 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
       this.myItem.imgURI = reader.result as string;
     }
     reader.readAsDataURL(files[0]);
+
+    EXIF.getData(files[0], function() {
+      let exifData = EXIF.pretty(this);
+      console.log(`EXIF: ${exifData}`);
+
+      let orientation = EXIF.getTag(this, 'Orientation');
+      console.log(`EXIF Orientation: ${orientation}`);
+
+      if (orientation) {
+        self.zone.run(() => {
+          self.myItem.exifOrientation = orientation;
+        });
+      }
+    });
   }
 }
