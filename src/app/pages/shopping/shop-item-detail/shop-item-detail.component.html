@@ -34,7 +34,7 @@
               <input #photoFile id="photoFileInput" type="file" accept='image/*' (change)="pickPhoto(photoFile.files)" />  
           </div>
         </ion-col>
-        <ion-col>
+        <ion-col *ngIf="!isMobile">
           <ion-button expand="block" (click)="takePicture()">
             <ion-icon slot="icon-only" name="camera"></ion-icon>
           </ion-button>          

@@ -4,7 +4,7 @@ import {
   OnDestroy,
   Input,
 } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -25,6 +25,7 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
 
+  isMobile: boolean;
   title: string = '';
   myItem: IShopItem = {
     unitPrice: 0.0,
@@ -32,11 +33,13 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
   };
 
   constructor(
+    private platform: Platform,
     private modalController: ModalController,
     private shopItemStore: ShopItemStoreService,
   ) { }
 
   ngOnInit() {
+    this.isMobile = this.platform.is('mobile');
     this.title = (this.id ? 'Edit' : 'Add') + ' Item';
     if (this.id) {
       this.shopItemStore.selectItemById$(this.id)
