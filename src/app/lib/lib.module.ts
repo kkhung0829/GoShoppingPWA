@@ -4,10 +4,12 @@ import { IonicModule } from '@ionic/angular';
 import { WebcamModule } from 'ngx-webcam';
 
 import { TakePhotoComponent } from './components/take-photo/take-photo.component';
+import { ExifTagsDirective } from './directives/exif-tags.directive';
 
 @NgModule({
   declarations: [
     TakePhotoComponent,
+    ExifTagsDirective,
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,7 @@ import { TakePhotoComponent } from './components/take-photo/take-photo.component
   ],
   exports: [
     TakePhotoComponent,
+    ExifTagsDirective,
   ]
 })
 export class LibModule { }

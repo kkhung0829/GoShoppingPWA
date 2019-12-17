@@ -4,5 +4,5 @@ export interface IShopItem {
     unitPrice: number;
     numUnit: number;
     imgURI?: string;
-    exifOrientation?: number;
+    exifTags?: object;
 }

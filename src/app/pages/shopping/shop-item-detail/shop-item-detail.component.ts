@@ -34,7 +34,6 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
   myItem: IShopItem = {
     unitPrice: 0.0,
     numUnit: 1,
-    exifOrientation: 1,
   };
 
   constructor(
@@ -113,16 +112,13 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(files[0]);
 
     EXIF.getData(files[0], function() {
-      let exifData = EXIF.pretty(this);
-      console.log(`EXIF: ${exifData}`);
-
-      let orientation = EXIF.getTag(this, 'Orientation');
-      console.log(`EXIF Orientation: ${orientation}`);
-
-      if (orientation) {
+      let exifTags = EXIF.getAllTags(this);
+      console.log(exifTags);
+      
+      if (exifTags) {
         if (!self.isIOS) {
           self.zone.run(() => {
-            self.myItem.exifOrientation = orientation;
+            self.myItem.exifTags = exifTags;
           });  
         }
       }

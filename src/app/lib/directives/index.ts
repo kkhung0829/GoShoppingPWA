@@ -1,0 +1,1 @@
+export { ExifTagsDirective } from './exif-tags.directive';
