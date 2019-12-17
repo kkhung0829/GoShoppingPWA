@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center>Total: {{totalPrice | currency:"":"symbol":"1.1-1"}}</ion-title>
+    <ion-title text-center>
+      <app-animate-number
+        [formatter]="formatter4Title"
+        [target]="totalPrice"
+      ></app-animate-number>
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button color="danger" (click)="removeAll()">
         <ion-icon slot="icon-only" name="trash"></ion-icon>

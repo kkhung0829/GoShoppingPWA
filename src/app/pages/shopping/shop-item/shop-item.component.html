@@ -10,7 +10,12 @@
       <h2>@ {{item.unitPrice | currency:"":"symbol":"1.1-1"}}</h2>
       <h2>X {{item.numUnit}}</h2>
     </ion-label>
-    <ion-badge slot="end">{{item.unitPrice * item.numUnit | currency}}</ion-badge>
+    <ion-badge slot="end">
+      <app-animate-number
+        [formatter]="formatter4Price"
+        [target]="item.unitPrice * item.numUnit"
+      ></app-animate-number>
+    </ion-badge>
   </ion-item>
   <ion-row>
     <ion-col class="ion-text-left">

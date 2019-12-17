@@ -20,10 +20,11 @@ import { ShopItemDetailComponent } from './shop-item-detail/shop-item-detail.com
   styleUrls: ['./shopping.page.scss'],
 })
 export class ShoppingPage implements OnInit, OnDestroy {
-  private unsubscribe$ = new Subject<void>();
+  public items: IShopItem[];
+  public totalPrice: number;
+  public formatter4Title = (val) => ('Total: $' + val.toFixed(1));
 
-  items: IShopItem[];
-  totalPrice: number;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private modalController: ModalController,
