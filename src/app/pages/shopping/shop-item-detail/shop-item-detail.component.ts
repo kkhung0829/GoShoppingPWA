@@ -111,15 +111,12 @@ export class ShopItemDetailComponent implements OnInit, OnDestroy {
     }
     reader.readAsDataURL(files[0]);
 
+    self.myItem.exifTags = null;
     EXIF.getData(files[0], function() {
-      let exifTags = EXIF.getAllTags(this);
-      console.log(exifTags);
-      
+      let exifTags = EXIF.getAllTags(this);      
       if (exifTags) {
         if (!self.isIOS) {
-          self.zone.run(() => {
             self.myItem.exifTags = exifTags;
-          });  
         }
       }
     });

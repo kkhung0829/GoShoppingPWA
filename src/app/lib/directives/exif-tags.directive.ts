@@ -3,13 +3,15 @@ import {
   HostBinding,
   Input,
   OnInit,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 @Directive({
   selector: '[appExifTags]'
 })
-export class ExifTagsDirective implements OnInit {
+export class ExifTagsDirective implements OnInit, OnChanges {
   @Input('appExifTags') tags: object;
 
   @HostBinding('style.transform') transform: string;
@@ -22,10 +24,12 @@ export class ExifTagsDirective implements OnInit {
 
   ngOnInit() {
     this.isIOS = this.platform.is('ios');
+  }
 
-    if (this.tags) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.tags) {
       if (!this.isIOS) {  // IOS not need to handle orientation
-        this.handleOrientation(this.tags['Orientation']);
+        this.handleOrientation(this.tags ? this.tags['Orientation'] : null);
       }
     }
   }
@@ -45,9 +49,13 @@ export class ExifTagsDirective implements OnInit {
           this.transform = 'rotate(270deg)';
           break;
   
+        case 1:
         default:
+          this.transform = '';
           break;
       }  
+    } else {
+      this.transform = '';
     }
   }
 }
