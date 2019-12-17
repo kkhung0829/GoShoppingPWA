@@ -21,6 +21,8 @@ export class AnimateNumberComponent implements OnInit, OnChanges {
   @Input() timing: string | Function = 'linear'; // 'linear' | 'easeOut' | 'easeIn' | (interval, progress) => number
   @Input() formatter: Function = (val) => val.toString(); // (number) => string
 
+  public displayValue: string;
+  
   static TimingFunctions = {
     linear: (interval, progress) => {
         return interval
@@ -36,7 +38,6 @@ export class AnimateNumberComponent implements OnInit, OnChanges {
   };
 
   private value: number = 0;
-  private displayValue: string;
   private startFrom: number = 0;  // Start value of last animation.
   private endWith: number = 0;    // End value of last animation.
   private stepSize: number = 0;
