@@ -6,6 +6,16 @@ import {
 import { ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import {
+  trigger,
+  transition,
+  useAnimation,
+} from '@angular/animations';
+import {
+  rotateInDownLeft,
+  rotateOutUpRight,
+  rubberBand,
+} from 'ng-animate';
 
 import {
   IShopItem,
@@ -18,6 +28,15 @@ import { ShopItemDetailComponent } from './shop-item-detail/shop-item-detail.com
   selector: 'app-shopping',
   templateUrl: './shopping.page.html',
   styleUrls: ['./shopping.page.scss'],
+  animations: [
+    trigger('myInsertRemoveTrigger', [
+      transition(':enter', useAnimation(rotateInDownLeft)),
+      transition(':leave', useAnimation(rotateOutUpRight)),
+    ]),
+    trigger('myPriceTrigger', [
+      transition(':increment, :decrement', useAnimation(rubberBand)),
+    ]),
+  ],
 })
 export class ShoppingPage implements OnInit, OnDestroy {
   public items: IShopItem[];

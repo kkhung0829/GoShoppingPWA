@@ -7,6 +7,14 @@ import {
 import { ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import {
+  trigger,
+  transition,
+  useAnimation,
+} from '@angular/animations';
+import {
+  rubberBand,
+} from 'ng-animate';
 
 import {
   IShopItem,
@@ -19,6 +27,11 @@ import { ShopItemDetailComponent } from '../shop-item-detail/shop-item-detail.co
   selector: 'app-shop-item',
   templateUrl: './shop-item.component.html',
   styleUrls: ['./shop-item.component.scss'],
+  animations: [
+    trigger('myPriceTrigger', [
+      transition(':increment, :decrement', useAnimation(rubberBand)),
+    ]),
+  ],
 })
 export class ShopItemComponent implements OnInit, OnDestroy {
 
