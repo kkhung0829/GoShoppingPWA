@@ -3,7 +3,6 @@ import {
   OnInit,
   OnDestroy,
   Input,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
@@ -20,7 +19,6 @@ import { ShopItemDetailComponent } from '../shop-item-detail/shop-item-detail.co
   selector: 'app-shop-item',
   templateUrl: './shop-item.component.html',
   styleUrls: ['./shop-item.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShopItemComponent implements OnInit, OnDestroy {
 

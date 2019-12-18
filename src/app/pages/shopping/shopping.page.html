@@ -16,7 +16,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let item of items" size-sm="6" size-md="4" size-xl="3">
+      <ion-col *ngFor="let item of items; trackBy: trackBy4ShopItemList" size-sm="6" size-md="4" size-xl="3">
         <app-shop-item [id]="item._id"></app-shop-item>
       </ion-col>
     </ion-row>

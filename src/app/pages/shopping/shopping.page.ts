@@ -77,4 +77,8 @@ export class ShoppingPage implements OnInit, OnDestroy {
       modal.present();
     });
   }
+
+  trackBy4ShopItemList(index: number, shopItem: IShopItem): any {
+    return shopItem._id;
+  }
 }
