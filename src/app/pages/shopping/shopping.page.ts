@@ -9,6 +9,8 @@ import { takeUntil } from 'rxjs/operators';
 import {
   trigger,
   transition,
+  query,
+  stagger,
   useAnimation,
 } from '@angular/animations';
 import {
@@ -29,9 +31,18 @@ import { ShopItemDetailComponent } from './shop-item-detail/shop-item-detail.com
   templateUrl: './shopping.page.html',
   styleUrls: ['./shopping.page.scss'],
   animations: [
-    trigger('myInsertRemoveTrigger', [
-      transition(':enter', useAnimation(rotateInDownLeft)),
-      transition(':leave', useAnimation(rotateOutUpRight)),
+    trigger('myShopItemList', [
+      transition(':enter', []),
+      transition(':increment', [
+        query(':enter', [
+          stagger(500, useAnimation(rotateInDownLeft)),
+        ]),
+      ]),
+      transition(':decrement', [
+        query(':leave', [
+          stagger(500, useAnimation(rotateOutUpRight)),
+        ]),
+      ]),
     ]),
     trigger('myPriceTrigger', [
       transition(':increment, :decrement', useAnimation(rubberBand)),

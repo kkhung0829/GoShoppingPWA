@@ -15,12 +15,11 @@
 </ion-header>
 <ion-content>
   <ion-grid>
-    <ion-row>
+    <ion-row [@myShopItemList]="items.length">
       <ion-col *ngFor="let item of items; trackBy: trackBy4ShopItemList"
         size-sm="6"
         size-md="4"
         size-xl="3"
-        @myInsertRemoveTrigger
       >
         <app-shop-item [id]="item._id"></app-shop-item>
       </ion-col>
